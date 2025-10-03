@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompts for Change - Library</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="app-title">📚 Prompts for Change</h1>
+                <p class="app-subtitle">Your AI Knowledge Library</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search articles..." class="search-input">
+                <button id="searchBtn" class="search-btn">🔍</button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-category="all">All Articles</button>
+            <button class="nav-tab" data-category="prompts">Prompts</button>
+            <button class="nav-tab" data-category="ai-tools">AI Tools</button>
+            <button class="nav-tab" data-category="philosophical">Philosophical</button>
+            <button class="nav-tab" data-category="technical">Technical</button>
+            <button class="nav-tab" data-category="business">Business</button>
+            <button class="nav-tab" data-category="research">Research</button>
+            <button class="nav-tab" data-category="automation">Automation</button>
+            <button class="nav-tab" data-category="web-dev">Web Dev</button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="main-content">
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-number" id="totalArticles">44</span>
+                    <span class="stat-label">Articles</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="categoriesCount">8</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="filteredCount">44</span>
+                    <span class="stat-label">Showing</span>
+                </div>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid" id="articlesGrid">
+                <!-- Articles will be dynamically loaded here -->
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No articles found</h3>
+                <p>Try adjusting your search terms or browse different categories</p>
+            </div>
+        </main>
+
+        <!-- Article Modal -->
+        <div class="modal" id="articleModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle"></h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="article-meta">
+                        <span class="category-badge" id="modalCategory"></span>
+                        <span class="post-id" id="modalPostId"></span>
+                    </div>
+                    <div class="article-content" id="modalContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="openInTelegram">Open in Telegram</button>
+                    <button class="btn btn-secondary" id="copyContent">Copy Content</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading articles...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "name": "prompts-for-change",
+  "version": "1.0.0",
+  "description": "A modern Telegram Mini App for organizing and sharing AI prompts, tools, and knowledge",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "build": "echo 'No build step required for static files'",
+    "deploy": "echo 'Deploy using your preferred hosting service'"
+  },
+  "keywords": [
+    "telegram",
+    "mini-app",
+    "ai",
+    "prompts",
+    "knowledge-base",
+    "library",
+    "static-site"
+  ],
+  "author": "Paul (Tango.Vision)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/prompts-for-change.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/prompts-for-change/issues"
+  },
+  "homepage": "https://github.com/yourusername/prompts-for-change#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
