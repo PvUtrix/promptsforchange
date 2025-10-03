@@ -8,7 +8,7 @@ WORKDIR /usr/share/nginx/html
 COPY index.html .
 COPY styles.css .
 COPY script.js .
-COPY MINI_APP_README.md .
+COPY README.md .
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
