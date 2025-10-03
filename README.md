@@ -168,7 +168,7 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 Update the Telegram link in the modal:
 
 ```javascript
-tg.openLink(`https://t.me/your_channel/${currentArticle.id}`);
+tg.openLink(`https://t.me/promptsforchange`);
 ```
 
 ## 🐳 Docker Deployment

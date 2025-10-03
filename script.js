@@ -442,7 +442,7 @@ function setupEventListeners() {
     
     openInTelegram.addEventListener('click', function() {
         if (tg) {
-            tg.openLink(`https://t.me/your_channel/${currentArticle.id}`);
+            tg.openLink(`https://t.me/promptsforchange`);
         }
     });
     

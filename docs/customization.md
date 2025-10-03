@@ -317,7 +317,7 @@ tg.MainButton.show();
 // Custom Telegram button actions
 tg.MainButton.onClick(() => {
     // Open article in Telegram channel
-    tg.openLink(`https://t.me/your_channel/${currentArticle.id}`);
+    tg.openLink(`https://t.me/promptsforchange`);
 });
 
 // Back button handling
