@@ -90,7 +90,7 @@ function setupEventListeners() {
     
     openInTelegram.addEventListener('click', function() {
         if (currentPost && currentPost.metadata.source.url) {
-            if (tg) {
+        if (tg) {
                 tg.openLink(currentPost.metadata.source.url);
             } else {
                 window.open(currentPost.metadata.source.url, '_blank');
@@ -332,7 +332,7 @@ function updateStats() {
     if (!postsData) return;
     
     document.getElementById('totalArticles').textContent = postsData.metadata.total_posts;
-    document.getElementById('categoriesCount').textContent = postsData.metadata.categories;
+    document.getElementById('categoriesCount').textContent = Object.keys(postsData.categories).length;
     document.getElementById('filteredCount').textContent = allPosts.length;
 }
 
