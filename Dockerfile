@@ -33,8 +33,7 @@ COPY --from=builder /app/styles.css .
 COPY --from=builder /app/script.js .
 COPY --from=builder /app/posts_metadata.json .
 
-# Copy nginx configuration (if it exists)
-COPY nginx.conf /etc/nginx/nginx.conf 2>/dev/null || echo "Using default nginx config"
+# Using default nginx configuration
 
 # Create necessary directories and set permissions
 RUN mkdir -p /var/run /var/log/nginx /var/cache/nginx && \
