@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "created": "2024-12-19",
+    "description": "Category definitions for Prompts for Change channel"
+  },
+  "categories": {
+    "prompts": {
+      "name": "AI Prompts",
+      "description": "Effective prompts for various AI applications",
+      "icon": "🤖",
+      "color": "#3B82F6"
+    },
+    "ai-tools": {
+      "name": "AI Tools",
+      "description": "AI platforms, models, and tools",
+      "icon": "🛠️",
+      "color": "#10B981"
+    },
+    "philosophical": {
+      "name": "Philosophical",
+      "description": "Deep thoughts and philosophical explorations",
+      "icon": "🧠",
+      "color": "#8B5CF6"
+    },
+    "technical": {
+      "name": "Technical Guides",
+      "description": "Technical tutorials and guides",
+      "icon": "⚙️",
+      "color": "#F59E0B"
+    },
+    "business": {
+      "name": "Startup & Business",
+      "description": "Business insights and entrepreneurship",
+      "icon": "💼",
+      "color": "#EF4444"
+    },
+    "research": {
+      "name": "Research & Analysis",
+      "description": "Research findings and analysis",
+      "icon": "📊",
+      "color": "#06B6D4"
+    },
+    "automation": {
+      "name": "Automation",
+      "description": "Automation tools and workflows",
+      "icon": "🔄",
+      "color": "#8B5CF6"
+    },
+    "web-development": {
+      "name": "Web Development",
+      "description": "Web development and coding",
+      "icon": "🌐",
+      "color": "#10B981"
+    }
+  }
+}

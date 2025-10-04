@@ -4,10 +4,12 @@
   "description": "A modern Telegram Mini App for organizing and sharing AI prompts, tools, and knowledge",
   "main": "index.html",
   "scripts": {
-    "start": "python -m http.server 8000",
+    "start": "python3 -m http.server 8000",
     "serve": "python3 -m http.server 8000",
-    "build": "echo 'No build step required for static files'",
-    "deploy": "echo 'Deploy using your preferred hosting service'"
+    "build": "python3 build_system.py",
+    "migrate": "python3 migrate_to_markdown.py",
+    "dev": "python3 build_system.py && python3 -m http.server 8000",
+    "deploy": "python3 build_system.py && echo 'Build complete - deploy using your preferred hosting service'"
   },
   "keywords": [
     "telegram",
