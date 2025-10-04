@@ -1,57 +1,61 @@
 # Git
 .git
 .gitignore
-.gitattributes
 
 # Documentation
 README.md
-MINI_APP_README.md
-*.md
+CONTRIBUTING.md
+LICENSE
+SECURITY.md
+docs/
 
 # Development files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# IDE files
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS files
+# OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Logs
-*.log
-logs/
-
-# Dependencies (if any)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build artifacts
-dist/
-build/
-.next/
-out/
-
 # Temporary files
-tmp/
-temp/
 *.tmp
 *.temp
+.cache/
 
-# Docker files (don't include in build context)
-Dockerfile*
-docker-compose*.yml
-.dockerignore
+# Old data files
+parsed_posts.json
+posts_metadata_complete.json
+result.json
 
-# Coolify specific
-.coolify/
+# Development
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
