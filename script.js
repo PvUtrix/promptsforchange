@@ -33,6 +33,17 @@ let sortByDate = false;
 
 // Load posts data from JSON
 async function loadPostsData() {
+    // First, try to use embedded data if available
+    if (window.embeddedPostsData) {
+        console.log('📊 Using embedded posts data');
+        postsData = window.embeddedPostsData;
+        allPosts = postsData.posts;
+        console.log('All posts loaded from embedded data:', allPosts.length);
+        initializeApp();
+        return;
+    }
+    
+    // If no embedded data, try to fetch from server
     const possiblePaths = [
         'posts_metadata.json',
         './posts_metadata.json',
