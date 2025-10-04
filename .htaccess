@@ -1,0 +1,29 @@
+# Apache configuration for serving JSON files properly
+# This ensures JSON files are served with correct MIME type
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Serve JSON files directly with correct MIME type
+<FilesMatch "\.json$">
+    Header set Content-Type "application/json"
+    Header set Cache-Control "public, max-age=3600"
+</FilesMatch>
+
+# SPA fallback - redirect all non-existing files to index.html
+# But exclude actual files that should be served
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/posts_metadata\.json$
+RewriteRule ^(.*)$ /index.html [L]
+
+# Security headers
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "no-referrer-when-downgrade"
+
+# Cache static assets
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>

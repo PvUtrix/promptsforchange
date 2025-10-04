@@ -33,33 +33,55 @@ let sortByDate = false;
 
 // Load posts data from JSON
 async function loadPostsData() {
-    try {
-        console.log('Loading posts data...');
-        const response = await fetch('posts_metadata.json?t=' + Date.now());
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    const possiblePaths = [
+        'posts_metadata.json',
+        './posts_metadata.json',
+        '/posts_metadata.json',
+        'data/posts_metadata.json'
+    ];
+    
+    for (const path of possiblePaths) {
+        try {
+            console.log(`Trying to load from: ${path}`);
+            const response = await fetch(`${path}?t=${Date.now()}`);
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+            
+            if (!response.ok) {
+                console.log(`Failed to load from ${path}: ${response.status}`);
+                continue;
+            }
+            
+            const text = await response.text();
+            console.log('Response text length:', text.length);
+            console.log('First 100 chars:', text.substring(0, 100));
+            
+            // Check if we got HTML instead of JSON (common in production)
+            if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+                console.error(`Received HTML instead of JSON from ${path} - likely a server routing issue`);
+                continue;
+            }
+            
+            postsData = JSON.parse(text);
+            console.log('Parsed posts data:', postsData);
+            
+            // Flatten all posts into a single array
+            allPosts = postsData.posts;
+            console.log('All posts loaded:', allPosts.length);
+            
+            // Initialize the application
+            initializeApp();
+            return; // Success!
+            
+        } catch (error) {
+            console.error(`Error loading from ${path}:`, error);
+            continue;
         }
-        
-        const text = await response.text();
-        console.log('Response text length:', text.length);
-        console.log('First 100 chars:', text.substring(0, 100));
-        
-        postsData = JSON.parse(text);
-        console.log('Parsed posts data:', postsData);
-        
-        // Flatten all posts into a single array
-        allPosts = postsData.posts;
-        console.log('All posts loaded:', allPosts.length);
-        
-        // Initialize the application
-        initializeApp();
-    } catch (error) {
-        console.error('Error loading posts data:', error);
-        showError('Failed to load posts data: ' + error.message);
     }
+    
+    // If we get here, all paths failed
+    console.error('Failed to load posts data from any path');
+    showError('Configuration Error: Unable to load posts data. Please check that posts_metadata.json is accessible and the server is configured correctly.');
 }
 
 // Initialize the application
