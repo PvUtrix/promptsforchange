@@ -1,13 +1,15 @@
 // Enhanced Telegram Mini App with Metadata Support
-let tg = window.Telegram.WebApp;
+let tg = window.Telegram?.WebApp;
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Telegram WebApp
+    // Initialize Telegram WebApp (only if available)
     if (tg) {
         tg.ready();
         tg.expand();
         tg.enableClosingConfirmation();
+    } else {
+        console.log('Telegram WebApp not available - running in local mode');
     }
     
     // Load posts data and initialize
@@ -398,6 +400,9 @@ if (tg) {
             tg.close();
         }
     });
+} else {
+    // Fallback for non-Telegram environments
+    console.log('Telegram WebApp events not available');
 }
 
 // Keyboard shortcuts
