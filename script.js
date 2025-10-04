@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load posts data and initialize
     loadPostsData();
+    
+    // Fallback: try to load data after a delay if initial load fails
+    setTimeout(() => {
+        if (!postsData) {
+            console.log('Retrying to load posts data...');
+            loadPostsData();
+        }
+    }, 2000);
 });
 
 // Global variables
@@ -23,17 +31,31 @@ let postsData = null;
 // Load posts data from JSON
 async function loadPostsData() {
     try {
-        const response = await fetch('posts_metadata.json');
-        postsData = await response.json();
+        console.log('Loading posts data...');
+        const response = await fetch('posts_metadata.json?t=' + Date.now());
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const text = await response.text();
+        console.log('Response text length:', text.length);
+        console.log('First 100 chars:', text.substring(0, 100));
+        
+        postsData = JSON.parse(text);
+        console.log('Parsed posts data:', postsData);
         
         // Flatten all posts into a single array
         allPosts = postsData.posts;
+        console.log('All posts loaded:', allPosts.length);
         
         // Initialize the application
         initializeApp();
     } catch (error) {
         console.error('Error loading posts data:', error);
-        showError('Failed to load posts data');
+        showError('Failed to load posts data: ' + error.message);
     }
 }
 
