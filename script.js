@@ -131,6 +131,25 @@ function setupEventListeners() {
         modal.classList.remove('show');
     });
     
+    // About modal functionality
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutModal = document.getElementById('aboutModal');
+    const closeAboutModal = document.getElementById('closeAboutModal');
+    const closeAboutBtn = document.getElementById('closeAboutBtn');
+    
+    aboutBtn.addEventListener('click', function() {
+        updateAboutInfo();
+        aboutModal.classList.add('show');
+    });
+    
+    closeAboutModal.addEventListener('click', function() {
+        aboutModal.classList.remove('show');
+    });
+    
+    closeAboutBtn.addEventListener('click', function() {
+        aboutModal.classList.remove('show');
+    });
+    
     openInTelegram.addEventListener('click', function() {
         if (currentPost && currentPost.metadata.source.url) {
         if (tg) {
@@ -156,6 +175,13 @@ function setupEventListeners() {
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.classList.remove('show');
+        }
+    });
+    
+    // Close about modal when clicking outside
+    aboutModal.addEventListener('click', function(e) {
+        if (e.target === aboutModal) {
+            aboutModal.classList.remove('show');
         }
     });
 }
@@ -377,6 +403,26 @@ function getLanguageFlag(language) {
     return flags[language] || '🌐';
 }
 
+
+// Update About modal information
+function updateAboutInfo() {
+    if (!postsData) return;
+    
+    // Update stats
+    document.getElementById('aboutTotalPosts').textContent = postsData.metadata.total_posts;
+    document.getElementById('aboutCategories').textContent = Object.keys(postsData.categories).length;
+    
+    // Count unique languages
+    const languages = new Set(allPosts.map(post => post.metadata.language));
+    document.getElementById('aboutLanguages').textContent = languages.size;
+    
+    // Update version (current commit hash)
+    document.getElementById('appVersion').textContent = 'c3ef838';
+    
+    // Update last updated date
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('lastUpdated').textContent = today;
+}
 
 // Track post view
 function trackPostView(post) {
