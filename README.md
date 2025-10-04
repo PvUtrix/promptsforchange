@@ -1,6 +1,6 @@
 # 📚 Prompts for Change
 
-A modern, responsive Telegram Mini App that serves as a comprehensive library for AI prompts, tools, and knowledge. Built with vanilla HTML, CSS, and JavaScript for maximum compatibility and performance.
+A modern, responsive Telegram Mini App that serves as a comprehensive library for AI prompts, tools, and knowledge. Built with a hybrid markdown + JSON structure for easy content management and production reliability.
 
 ## ✨ Features
 
@@ -16,139 +16,151 @@ A modern, responsive Telegram Mini App that serves as a comprehensive library fo
 
 ## 🚀 Quick Start
 
-### Option 1: Deploy to GitHub Pages
-1. Fork this repository
-2. Go to Settings → Pages
-3. Select source: Deploy from a branch
-4. Choose main branch
-5. Your app will be available at `https://yourusername.github.io/prompts-for-change`
+### Prerequisites
+- Python 3.7+
+- Node.js (optional, for npm scripts)
 
-### Option 2: Deploy to Netlify
-1. Connect your GitHub repository to Netlify
-2. Set build command: `echo "No build required"`
-3. Set publish directory: `/`
-4. Deploy
-
-### Option 3: Deploy to Vercel
-1. Import your repository to Vercel
-2. Set framework preset to "Other"
-3. Deploy
-
-### Local Development
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/prompts-for-change.git
 cd prompts-for-change
 
-# Start a local server
-python -m http.server 8000
-# or
-npx serve .
-# or
-php -S localhost:8000
+# Install Python dependencies
+pip install pyyaml
 
-# Open http://localhost:8000 in your browser
+# Build the application
+npm run build
+# or
+python3 scripts/build_system.py
+
+# Start local development server
+npm run dev
+# or
+python3 -m http.server 8000
 ```
 
 ## 📁 Project Structure
 
 ```
 prompts-for-change/
-├── index.html              # Main HTML file
-├── styles.css              # CSS styles and responsive design
-├── script.js               # JavaScript functionality and data
-├── package.json            # Project metadata
-├── Dockerfile              # Docker configuration
-├── nginx.conf              # Nginx configuration
-├── .gitignore              # Git ignore rules
-├── LICENSE                  # MIT License
-├── CONTRIBUTING.md          # Contribution guidelines
-├── README.md               # This file
-└── docs/                   # Documentation
-    ├── deployment.md       # Deployment guide
-    └── customization.md    # Customization guide
+├── content/                    # Source content (markdown files)
+│   ├── posts/                 # All posts organized by category
+│   │   ├── 01_prompts/        # AI Prompts
+│   │   ├── 02_ai_tools/       # AI Tools
+│   │   ├── 03_philosophical/  # Philosophical content
+│   │   ├── 04_technical_guides/
+│   │   ├── 05_startup_business/
+│   │   ├── 06_research_analysis/
+│   │   ├── 07_automation/
+│   │   └── 08_web_development/
+│   └── categories.json        # Category definitions
+├── scripts/                   # Build and migration scripts
+│   ├── build_system.py        # Main build system
+│   └── migrate_to_markdown.py # Migration utilities
+├── docs/                      # Documentation
+├── index.html                 # Main application
+├── script.js                  # App logic
+├── styles.css                 # Styling
+└── package.json              # Project configuration
 ```
+
+## 🛠️ Development
+
+### Adding New Posts
+1. Create a new `.md` file in the appropriate category folder under `content/posts/`
+2. Add frontmatter with metadata:
+
+```markdown
+---
+id: my-post
+title: "My Awesome Post"
+category: "prompts"
+preview: "Short preview text..."
+metadata:
+  word_count: 150
+  read_time: "2 min"
+  tags: ["ai", "prompts"]
+  # ... additional metadata
+---
+
+# My Awesome Post
+
+This is the actual content of the post...
+```
+
+3. Run the build system:
+```bash
+npm run build
+```
+
+### Available Scripts
+- `npm run build` - Build the application from markdown files
+- `npm run dev` - Build and start development server
+- `npm run migrate` - Convert JSON posts to markdown (one-time use)
+- `npm run start` - Start local server only
 
 ## 🎯 Content Categories
 
 ### 📝 Prompts
-AI prompts and prompt engineering content:
-- Limiting beliefs prompts for entrepreneurs
-- Google Sheets with useful prompts
-- Human-like content generation prompts
-- Summarization and learning prompts
-- DeepSeek prompt cheat sheets
+AI prompts and prompt engineering content
 
 ### 🤖 AI Tools
-AI tools, platforms, and recommendations:
-- DeepSeek and Qwen recommendations
-- Browser automation tools
-- AI agents platforms
-- Latest AI model releases
+AI tools, platforms, and recommendations
 
 ### 🧠 Philosophical
-Abstract, experimental, and philosophical content:
-- DeepSeek philosophical reflections
-- Life archetypes and soul prompts
-- Music personality analysis
-- Society and divine game concepts
+Abstract, experimental, and philosophical content
 
 ### 🔧 Technical
-Technical tutorials and guides:
-- Data entropy articles
-- AI development workflows
-- MVP planning guides
-- Development best practices
+Technical tutorials and guides
 
 ### 💼 Business
-Business, entrepreneurship, and startup content:
-- Channel introductions
-- Innovation portals
-- Automation tutorials
-- Business commandments
-- Development bounties
+Business, entrepreneurship, and startup content
 
 ### 🔬 Research
-Research, analysis, and deep dives:
-- Climate change analysis
-- Sustainable living constitutions
-- Remote work vs AI replacement
-- AI education mandates
-- Future research insights
+Research, analysis, and deep dives
 
 ### ⚙️ Automation
-Automation tools and workflows:
-- Business automation services
-- Virtual assistant development
-- Workflow optimization
+Automation tools and workflows
 
 ### 🌐 Web Development
-Web development and coding:
-- Website creation guides
-- QR code generators
-- Development streams
-- Cost-effective solutions
+Web development and coding
 
-## 🛠️ Customization
+## 🚀 Deployment
 
-### Adding New Articles
-Edit the `articlesData` object in `script.js`:
+### Static Hosting (Recommended)
+The application is built as static files and can be deployed to any static hosting service:
 
-```javascript
-const articlesData = {
-    "prompts": [
-        {
-            id: "unique-post-id",
-            title: "Your Article Title",
-            category: "prompts",
-            content: "Full article content...",
-            preview: "Short preview text...",
-            readTime: "2 min"
-        }
-        // ... more articles
-    ]
-    // ... more categories
-};
+- **GitHub Pages**: Push to main branch, enable Pages
+- **Netlify**: Connect repository, auto-deploy
+- **Vercel**: Import repository, deploy
+- **Any CDN**: Upload built files
+
+### Docker (Optional)
+```bash
+# Build Docker image
+docker build -t prompts-for-change .
+
+# Run container
+docker run -p 80:80 prompts-for-change
+```
+
+## 🎨 Customization
+
+### Categories
+Edit `content/categories.json` to modify categories:
+
+```json
+{
+  "categories": {
+    "my-category": {
+      "name": "My Category",
+      "description": "Description here",
+      "icon": "🎯",
+      "color": "#FF6B6B"
+    }
+  }
+}
 ```
 
 ### Styling
@@ -164,39 +176,10 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 ```
 
-### Telegram Integration
-Update the Telegram link in the modal:
-
-```javascript
-tg.openLink(`https://t.me/promptsforchange`);
-```
-
-## 🐳 Docker Deployment
-
-### Build and Run
-```bash
-# Build the Docker image
-docker build -t prompts-for-change .
-
-# Run the container
-docker run -p 80:80 prompts-for-change
-```
-
-### Docker Compose
-```yaml
-version: '3.8'
-services:
-  prompts-for-change:
-    build: .
-    ports:
-      - "80:80"
-    restart: unless-stopped
-```
-
 ## 📊 Performance
 
 - **Lightweight**: No external dependencies
-- **Fast Loading**: Optimized static files
+- **Fast Loading**: Optimized static files with embedded data
 - **Mobile Optimized**: Responsive design
 - **SEO Friendly**: Semantic HTML structure
 - **Accessible**: WCAG compliant design
@@ -227,7 +210,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/prompts-for-change/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourusername/prompts-for-change/discussions)
-- **Email**: For security issues or private matters
 
 ---
 

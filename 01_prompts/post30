@@ -1,2 +1,0 @@
-Ребят, для тех кто работает в курсоре, реплите или vs code с ллм, принес вам волшебный промпт когда натыкаешься на серию багов которые ассистент не может решить:
-Reflect on 5-7 different possible sources of the problem, distill those down to 1-2 most likely sources, and then add logs to validate your assumptions before we move onto implementing the actual code fix.

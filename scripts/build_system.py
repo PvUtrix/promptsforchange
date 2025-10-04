@@ -13,7 +13,7 @@ from datetime import datetime
 from typing import Dict, List, Any
 
 class PostBuilder:
-    def __init__(self, content_dir: str = "content", output_dir: str = "."):
+    def __init__(self, content_dir: str = "../content", output_dir: str = ".."):
         self.content_dir = Path(content_dir)
         self.output_dir = Path(output_dir)
         self.posts_dir = self.content_dir / "posts"

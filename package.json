@@ -6,10 +6,10 @@
   "scripts": {
     "start": "python3 -m http.server 8000",
     "serve": "python3 -m http.server 8000",
-    "build": "python3 build_system.py",
-    "migrate": "python3 migrate_to_markdown.py",
-    "dev": "python3 build_system.py && python3 -m http.server 8000",
-    "deploy": "python3 build_system.py && echo 'Build complete - deploy using your preferred hosting service'"
+    "build": "python3 scripts/build_system.py",
+    "migrate": "python3 scripts/migrate_to_markdown.py",
+    "dev": "python3 scripts/build_system.py && python3 -m http.server 8000",
+    "deploy": "python3 scripts/build_system.py && echo 'Build complete - deploy using your preferred hosting service'"
   },
   "keywords": [
     "telegram",
