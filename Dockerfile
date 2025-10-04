@@ -14,6 +14,9 @@ WORKDIR /app
 COPY content/ ./content/
 COPY scripts/ ./scripts/
 COPY package.json ./
+COPY index.html ./
+COPY styles.css ./
+COPY script.js ./
 
 # Build the application
 RUN python3 scripts/build_system.py
