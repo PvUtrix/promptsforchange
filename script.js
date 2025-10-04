@@ -66,9 +66,6 @@ async function loadPostsData() {
 function initializeApp() {
     if (!postsData) return;
     
-    // Update stats
-    updateStats();
-    
     // Render initial posts
     renderPosts();
     
@@ -92,14 +89,25 @@ function setupEventListeners() {
     // Search functionality
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const searchContainer = document.getElementById('searchContainer');
+    const searchCloseBtn = document.getElementById('searchCloseBtn');
     
-    searchInput.addEventListener('input', function() {
-        searchQuery = this.value.toLowerCase();
+    searchBtn.addEventListener('click', function() {
+        searchContainer.style.display = searchContainer.style.display === 'none' ? 'flex' : 'none';
+        if (searchContainer.style.display === 'flex') {
+            searchInput.focus();
+        }
+    });
+    
+    searchCloseBtn.addEventListener('click', function() {
+        searchContainer.style.display = 'none';
+        searchInput.value = '';
+        searchQuery = '';
         filterPosts();
     });
     
-    searchBtn.addEventListener('click', function() {
-        searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    searchInput.addEventListener('input', function() {
+        searchQuery = this.value.toLowerCase();
         filterPosts();
     });
     
@@ -204,8 +212,6 @@ function filterPosts() {
         });
     }
     
-    // Update filtered count
-    document.getElementById('filteredCount').textContent = filteredPosts.length;
     
     // Render posts
     renderPosts(filteredPosts);
@@ -371,14 +377,6 @@ function getLanguageFlag(language) {
     return flags[language] || '🌐';
 }
 
-// Update statistics
-function updateStats() {
-    if (!postsData) return;
-    
-    document.getElementById('totalArticles').textContent = postsData.metadata.total_posts;
-    document.getElementById('categoriesCount').textContent = Object.keys(postsData.categories).length;
-    document.getElementById('filteredCount').textContent = allPosts.length;
-}
 
 // Track post view
 function trackPostView(post) {

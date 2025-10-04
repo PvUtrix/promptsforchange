@@ -12,15 +12,18 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div>
+                <div class="header-left">
                     <h1 class="app-title">📚 Prompts for Change</h1>
                     <p class="app-subtitle">Your AI Knowledge Library</p>
                 </div>
+                <div class="header-right">
+                    <button id="searchBtn" class="header-icon-btn" title="Search">🔍</button>
+                    <button id="sortBtn" class="header-icon-btn" title="Sort by date">📅</button>
+                </div>
             </div>
-            <div class="search-container">
+            <div class="search-container" id="searchContainer" style="display: none;">
                 <input type="text" id="searchInput" placeholder="Search articles..." class="search-input">
-                <button id="searchBtn" class="search-btn">🔍</button>
-                <button id="sortBtn" class="sort-btn" title="Sort by date">📅</button>
+                <button id="searchCloseBtn" class="search-close-btn">✕</button>
             </div>
         </header>
 
@@ -39,21 +42,6 @@
 
         <!-- Content Area -->
         <main class="main-content">
-            <div class="stats-bar">
-                <div class="stat">
-                    <span class="stat-number" id="totalArticles">51</span>
-                    <span class="stat-label">Articles</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" id="categoriesCount">8</span>
-                    <span class="stat-label">Categories</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" id="filteredCount">51</span>
-                    <span class="stat-label">Showing</span>
-                </div>
-            </div>
-
             <!-- Articles Grid -->
             <div class="articles-grid" id="articlesGrid">
                 <!-- Articles will be dynamically loaded here -->

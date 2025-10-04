@@ -47,7 +47,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-right {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
 .app-title {
@@ -63,6 +74,32 @@ body {
     margin: 0;
 }
 
+.header-icon-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.header-icon-btn.active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
 .search-container {
     position: relative;
     width: 100%;
@@ -70,6 +107,7 @@ body {
     display: flex;
     gap: 0.4rem;
     align-items: center;
+    margin-top: 0.75rem;
 }
 
 .search-input {
@@ -90,7 +128,7 @@ body {
     transform: translateY(-2px);
 }
 
-.search-btn {
+.search-close-btn {
     padding: 0.6rem 0.8rem;
     border: none;
     border-radius: 20px;
@@ -102,32 +140,9 @@ body {
     font-size: 0.9rem;
 }
 
-.search-btn:hover {
+.search-close-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
-}
-
-.sort-btn {
-    padding: 0.6rem 0.8rem;
-    border: none;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    font-size: 0.9rem;
-    min-width: 45px;
-}
-
-.sort-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-.sort-btn.active {
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Navigation Styles */
@@ -174,36 +189,6 @@ body {
     padding: 1.5rem;
 }
 
-.stats-bar {
-    display: flex;
-    justify-content: center;
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-    gap: 2rem;
-}
-
-.stat {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.stat-number {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #667eea;
-}
-
-.stat-label {
-    font-size: 0.8rem;
-    color: #6c757d;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
 
 /* Articles Grid */
 .articles-grid {
@@ -676,15 +661,7 @@ body {
         gap: 1rem;
     }
     
-    .stats-bar {
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 0.75rem;
-    }
     
-    .stat {
-        justify-content: center;
-    }
     
     .main-content {
         padding: 1rem;
@@ -792,7 +769,4 @@ body {
         border-color: #3d3d5c;
     }
     
-    .stats-bar {
-        background: #2d2d44;
-    }
 }
