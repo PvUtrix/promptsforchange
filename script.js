@@ -29,6 +29,7 @@ let currentCategory = 'all';
 let searchQuery = '';
 let allPosts = [];
 let postsData = null;
+let sortByDate = false;
 
 // Load posts data from JSON
 async function loadPostsData() {
@@ -99,6 +100,16 @@ function setupEventListeners() {
     
     searchBtn.addEventListener('click', function() {
         searchQuery = document.getElementById('searchInput').value.toLowerCase();
+        filterPosts();
+    });
+    
+    // Sort functionality
+    const sortBtn = document.getElementById('sortBtn');
+    sortBtn.addEventListener('click', function() {
+        sortByDate = !sortByDate;
+        this.classList.toggle('active', sortByDate);
+        this.title = sortByDate ? 'Sort by default order' : 'Sort by date';
+        this.textContent = sortByDate ? '📋' : '📅';
         filterPosts();
     });
     
@@ -182,6 +193,15 @@ function filterPosts() {
             post.preview.toLowerCase().includes(searchQuery) ||
             post.metadata.tags.some(tag => tag.toLowerCase().includes(searchQuery))
         );
+    }
+    
+    // Sort posts
+    if (sortByDate) {
+        filteredPosts = filteredPosts.sort((a, b) => {
+            const dateA = new Date(a.metadata.timestamps.created);
+            const dateB = new Date(b.metadata.timestamps.created);
+            return dateB - dateA; // Newest first
+        });
     }
     
     // Update filtered count
